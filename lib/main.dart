@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(WordPairs());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class WordPairs extends StatelessWidget {
+  const WordPairs({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
+      create: (context) => WordPairsAppState(),
       child: MaterialApp(
-        title: 'Namer App',
+        title: 'Wordpairs',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange.shade100),
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyAppState extends ChangeNotifier {
+class WordPairsAppState extends ChangeNotifier {
   var current = WordPair.random();
 
   void getNext() {
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
 class GeneratorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
+    var appState = context.watch<WordPairsAppState>();
     var pair = appState.current;
 
     IconData icon;
@@ -151,7 +151,7 @@ class GeneratorPage extends StatelessWidget {
 class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
+    var appState = context.watch<WordPairsAppState>();
     var favoritePairs = appState.favorites;
     if (appState.favorites.isEmpty) {
       return Center(
